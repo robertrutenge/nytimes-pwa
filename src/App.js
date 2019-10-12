@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import "./App.css";
+import { getMostPopularStories } from "./services/nytimesApi";
+import Story from "../src/components/Story";
 
 function App() {
+  const [stories, setStories] = useState([]);
+
+  useEffect(() => {
+    getMostPopularStories().then(res => setStories(res.results));
+  });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header className="App-header">New York Times</header>
+      <div className="container">
+        {stories && stories.map(story => <Story story={story} />)}
+      </div>
     </div>
   );
 }
