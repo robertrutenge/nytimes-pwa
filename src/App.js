@@ -9,12 +9,13 @@ function App() {
 
   useEffect(() => {
     getMostPopularStories().then(res => setStories(res.results));
-  });
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">New York Times</header>
+      <header className="App-header">New Times</header>
       <div className="container">
-        {stories && stories.map(story => <Story story={story} />)}
+        {stories &&
+          stories.map(story => <Story story={story} key={story.id} />)}
       </div>
     </div>
   );

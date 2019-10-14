@@ -35,13 +35,10 @@ const Story = ({ story }) => (
           <span>{story.section}</span>
           <FontAwesomeIcon icon={faCalendar} />
           <span>{story.published_date}</span>
-
           <FontAwesomeIcon icon={faEye} />
           <span>{story.views}</span>
         </section>
-
         <p>{story.abstract}</p>
-
         <a
           href={story.url}
           target="_new"
